@@ -45,9 +45,9 @@ public class Casopis {
 	/*@ManyToMany(mappedBy = "casopis", cascade = CascadeType.REMOVE)
     protected List<Recenzent> recenzenti;*/
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	/*@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_uredjivackog_odbora")
-    private UredjivackiOdbor uredjivackiOdbor;
+    private UredjivackiOdbor uredjivackiOdbor;*/
 	
 	public Casopis() {
 		
@@ -61,14 +61,14 @@ public class Casopis {
 		this.nacinPlacanja = nacinPlacanja;
 	}
 
-	public UredjivackiOdbor getUredjivackiOdbor() {
+	/*public UredjivackiOdbor getUredjivackiOdbor() {
 		return uredjivackiOdbor;
 	}
 
 	public void setUredjivackiOdbor(UredjivackiOdbor uredjivackiOdbor) {
 		this.uredjivackiOdbor = uredjivackiOdbor;
 	}
-
+*/
 	public Long getId() {
 		return id;
 	}

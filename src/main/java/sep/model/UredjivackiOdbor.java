@@ -23,8 +23,8 @@ public class UredjivackiOdbor {
 	@Column(nullable=false)
 	private Long idGlavnogUrednika;
 	
-	@OneToMany(mappedBy = "uredjivackiOdbor", cascade = CascadeType.REMOVE)
-    protected List<Casopis> casopisi;
+	/*@OneToMany(mappedBy = "uredjivackiOdbor", cascade = CascadeType.REMOVE)
+    protected List<Casopis> casopisi;*/
 	
 	public UredjivackiOdbor() {
 		
@@ -54,18 +54,13 @@ public class UredjivackiOdbor {
 		this.idGlavnogUrednika = idGlavnogUrednika;
 	}
 
-	public List<Casopis> getCasopisi() {
+	/*public List<Casopis> getCasopisi() {
 		return casopisi;
 	}
 
 	public void setCasopisi(List<Casopis> casopisi) {
 		this.casopisi = casopisi;
-	}
-	
-	
-	
-	
-	
+	}*/
 	
 
 }

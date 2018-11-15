@@ -1,5 +1,6 @@
 package sep.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,9 +20,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Casopis {
 	
-	enum NacinPlacanja{
+	/*enum NacinPlacanja{
 		NAPLATA_CITAOCIMA, NAPLATA_AUTORIMA
-	}
+	}*/
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +34,17 @@ public class Casopis {
 	@Column(length=50,nullable=false)
 	private String ISSN;
 	
-	@Enumerated(EnumType.STRING)
-	private NacinPlacanja nacinPlacanja;
+	@Column(length=30,nullable=false)
+	private String merchant_id;
+	
+	@Column(length=100,nullable=false)
+	private String merchant_password;
+	
+	@Column(length=100,nullable=false)
+	private BigDecimal amount;
+	
+	/*@Enumerated(EnumType.STRING)
+	private NacinPlacanja nacinPlacanja;*/
 	
 	/*@ManyToMany(mappedBy = "casopis", cascade = CascadeType.REMOVE)
     protected List<NaucnaOblast> naucneOblasti;*/
@@ -53,13 +63,13 @@ public class Casopis {
 		
 	}
 
-	public NacinPlacanja getNacinPlacanja() {
+	/*public NacinPlacanja getNacinPlacanja() {
 		return nacinPlacanja;
 	}
 
 	public void setNacinPlacanja(NacinPlacanja nacinPlacanja) {
 		this.nacinPlacanja = nacinPlacanja;
-	}
+	}*/
 
 	/*public UredjivackiOdbor getUredjivackiOdbor() {
 		return uredjivackiOdbor;
@@ -69,8 +79,33 @@ public class Casopis {
 		this.uredjivackiOdbor = uredjivackiOdbor;
 	}
 */
+	
 	public Long getId() {
 		return id;
+	}
+
+	public String getMerchant_id() {
+		return merchant_id;
+	}
+
+	public void setMerchant_id(String merchant_id) {
+		this.merchant_id = merchant_id;
+	}
+
+	public String getMerchant_password() {
+		return merchant_password;
+	}
+
+	public void setMerchant_password(String merchant_password) {
+		this.merchant_password = merchant_password;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	public void setId(Long id) {

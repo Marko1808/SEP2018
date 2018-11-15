@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import sep.dto.CasopisDTO;
+import sep.dto.MerchantDTO;
 import sep.model.Casopis;
 import sep.service.CasopisService;
 
@@ -35,5 +37,21 @@ public class CasopisController {
 		}
 		return new ResponseEntity<>(listaCasopisaDTO, HttpStatus.OK);
 	}
+	@RequestMapping(
+			value = "/proveriMerchanta",
+			method = RequestMethod.POST
+	)
+	public boolean proveriMerchanta(@RequestBody MerchantDTO casopis) {
+		List<Casopis> listaCasopisa = casopisService.getAll();
+		
+		for(Casopis c : listaCasopisa) {
+			if(c.getMerchant_id().equals(casopis.getMerchant_id()) && c.getMerchant_password().equals(casopis.getMerchant_password())){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 
 }

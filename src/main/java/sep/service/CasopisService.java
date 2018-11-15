@@ -17,4 +17,8 @@ public class CasopisService {
 	public List<Casopis> getAll() {
 		return casopisRepository.findAll();
 	}
+	
+	public Casopis findById(Long id){
+		return casopisRepository.findOne(id);
+	}
 }

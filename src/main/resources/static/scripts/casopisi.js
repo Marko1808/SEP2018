@@ -35,8 +35,7 @@ function kupi(merchant_id,amount, merchant_password) {
         crossDomain: true,
          headers: {  'Access-Control-Allow-Origin': '*' },
         success: function (data) {
-        	
-        	
+        	window.location.href="http://localhost:1234/banka.html?paymentId="+data.paymentId;	
         },
         error: function (jqxhr, textStatus, errorThrown) {
         	alert(textStatus);

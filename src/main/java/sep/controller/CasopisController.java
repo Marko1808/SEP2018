@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import sep.dto.CardDTO;
 import sep.dto.CasopisDTO;
 import sep.dto.MerchantDTO;
+import sep.dto.URLDTO;
 import sep.model.Casopis;
 import sep.service.CasopisService;
 
@@ -37,6 +44,7 @@ public class CasopisController {
 		}
 		return new ResponseEntity<>(listaCasopisaDTO, HttpStatus.OK);
 	}
+	
 	@RequestMapping(
 			value = "/proveriMerchanta",
 			method = RequestMethod.POST
@@ -51,6 +59,28 @@ public class CasopisController {
 		}
 		return false;
 		
+	}
+	
+	@CrossOrigin
+	@RequestMapping(
+			value = "/kupiCasopis",
+			method = RequestMethod.POST
+	)
+	public ResponseEntity<?> kupiCasopis(@RequestBody CardDTO casopis) {
+		System.out.println("Stao tu");
+		URLDTO urlDTO = new URLDTO();
+		RestTemplate client = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        try {
+        	headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<CardDTO> entity = new HttpEntity<>(casopis, headers);
+            urlDTO = client.postForObject("http://localhost:1235/payment/izvrsiPlacanje", entity,
+            		URLDTO.class);
+            return new ResponseEntity<>(urlDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("Ne moze da posalje");
+            return null; 
+        }	
 	}
 	
 

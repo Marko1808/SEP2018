@@ -12,7 +12,7 @@ insert into Casopis(issn,amount,merchant_id,merchant_password,naziv) values
 	('321321',500.00, '1' , 'blic'  , 'Blic');
 	
 insert into Casopis(issn,amount,merchant_id,merchant_password,naziv) values
-	('321321',300.00, '1' , 'nacionalnaGeografija' , 'Nacionalna Geografija');
+	('321321',300.00, '2' , 'nacionalnaGeografija' , 'Nacionalna Geografija');
 		
 insert into Casopis(issn,amount,merchant_id,merchant_password,naziv) values
-	('321321',250.00, '1' , 'lepotaZdravlje'  , 'Lepota i Zdravlje');		
+	('321321',250.00, '3' , 'lepotaZdravlje'  , 'Lepota i Zdravlje');		

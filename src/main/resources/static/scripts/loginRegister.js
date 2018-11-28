@@ -21,7 +21,7 @@ function buttonLoginClick() {
         	if(data.role == 'ADMIN'){
         		top.location.href = "homeAdmin.html";
         	}else if(data.role == 'REGISTERED'){
-        		top.location.href = "home.html";
+        		top.location.href = "homeAdmin.html";
         	}
         },
         error: function (jqXHR, textStatus, errorThrown) {

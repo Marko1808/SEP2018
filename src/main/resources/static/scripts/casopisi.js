@@ -8,7 +8,7 @@ $(document).ready(function () {
 	        	var casopisiTable = $('#tableCasopisi');
 	        	for(i=0;i<data.length;i++){
 	        		var redniBr = i+1;
-	        		casopisiTable.append('<tr><td>'+redniBr+'.</td><td>'+data[i].naziv+'</td><td>'+data[i].amount+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"kupi('+data[i].merchant_id+',' + data[i].amount + ',\'' + data[i].merchant_password+ '\')\">Kupi</button></td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"paypal('+data[i].merchant_id+',' + data[i].amount + ',\'' + data[i].merchant_password+ '\')\">PayPal</button></td></tr>');		
+	        		casopisiTable.append('<tr><td>'+redniBr+'.</td><td>'+data[i].naziv+'</td><td>'+data[i].amount+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"kupi('+data[i].merchant_id+',' + data[i].amount + ',\'' + data[i].merchant_password+ '\')\">Kupi</button></td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"paypal('+data[i].merchant_id+',' + data[i].amount + ',\'' + data[i].merchant_password+ '\')\">PayPal</button></td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"bitcoin(\'' + data[i].naziv + '\',\'' + data[i].amount+ '\')\">Bitcoin</button></td></tr>');		
 	        	
 	        	}
 	        	
@@ -68,4 +68,28 @@ function paypal(merchant_id,amount, merchant_password) {
             
         }
 	});
+}
+
+function bitcoin(naziv, amount) {
+	var data = JSON.stringify({
+		"naziv": naziv,
+		"amount": amount
+	});
+	
+	$.ajax({
+		async: false,
+		url: "http://localhost:1236/zahtev/bitcoin",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        crossDomain: true,
+         headers: {  'Access-Control-Allow-Origin': '*' },
+        success: function (data) {
+        	window.location.href = data.redirect_url;
+        },
+        error: function (jqxhr, textStatus, errorThrown) {
+        	alert(textStatus);
+        }
+	});
+	
 }

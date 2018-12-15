@@ -13,7 +13,7 @@ function buttonLoginClick() {
 	});
 	$.ajax({
 		async: false,
-		url: "http://localhost:1234/radnik/login",
+		url: "https://localhost:1234/radnik/login",
         type: "POST",
         contentType: "application/json",
         data: data,

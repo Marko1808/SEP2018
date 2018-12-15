@@ -10,7 +10,7 @@ $(document).ready(function () {
 	var stringZaServer = paymentId + "," + token + "," + payerId;
 	$.ajax({
 			async: false,
-			url: "http://localhost:1236/zahtev/zavrsiPlacanje",
+			url: "https://localhost:1236/zahtev/zavrsiPlacanje",
 	        type: "POST",
 	        contentType: "text/plain",
 	        data: stringZaServer,

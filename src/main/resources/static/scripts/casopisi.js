@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$.ajax({
 			async: false,
-			url: "http://localhost:1234/casopis/getCasopisi/",
+			url: "https://localhost:1234/casopis/getCasopisi/",
 	        type: "GET",
 	        dataType: "json",
 	        success: function (data) {
@@ -29,14 +29,14 @@ function kupi(merchant_id,amount, merchant_password) {
 	});
 	$.ajax({
 		async: false,
-		url: "http://localhost:1236/zahtev/posaljiZahtev",
+		url: "https://localhost:1236/zahtev/posaljiZahtev",
         type: "POST",
         contentType: "application/json",
         data: data,
         crossDomain: true,
          headers: {  'Access-Control-Allow-Origin': '*' },
         success: function (data) {
-        	window.location.href="http://localhost:1234/banka.html?paymentId="+data.paymentId;	
+        	window.location.href="https://localhost:1234/banka.html?paymentId="+data.paymentId;	
         },
         error: function (jqxhr, textStatus, errorThrown) {
         	alert(textStatus);
@@ -54,14 +54,15 @@ function paypal(merchant_id,amount, merchant_password) {
 	});
 	$.ajax({
 		async: false,
-		url: "http://localhost:1236/zahtev/payPal",
+		url: "https://localhost:1236/zahtev/payPal",
         type: "POST",
         contentType: "application/json",
         data: data,
+        dataType: "text",
         crossDomain: true,
-         headers: {  'Access-Control-Allow-Origin': '*' },
-        success: function (data) {
-        	window.location.href = data.redirect_url;
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        success: function (data2) {
+        	window.location.href = data2;
         },
         error: function (jqxhr, textStatus, errorThrown) {
         	alert(textStatus);
@@ -78,14 +79,15 @@ function bitcoin(naziv, amount) {
 	
 	$.ajax({
 		async: false,
-		url: "http://localhost:1236/zahtev/bitcoin",
+		url: "https://localhost:1236/zahtev/bitcoin",
         type: "POST",
         contentType: "application/json",
         data: data,
+        dataType: "text",
         crossDomain: true,
          headers: {  'Access-Control-Allow-Origin': '*' },
         success: function (data) {
-        	window.location.href = data.redirect_url;
+        	window.location.href = data;
         },
         error: function (jqxhr, textStatus, errorThrown) {
         	alert(textStatus);
